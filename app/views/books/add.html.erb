@@ -1,0 +1,9 @@
+<% form_tag(:controller => "books", :action => "create") do %>
+  <label for="data">New Data (in CVS)
+  <span class="small"></span>
+  </label>
+  <%= text_area_tag :data, "", :size => "60x20" %>
+  <br/>
+  <%= submit_tag "Add" %>
+  <br /><br />
+<% end %>

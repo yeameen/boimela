@@ -1,0 +1,35 @@
+<% form_tag "", :method => 'get', :style => 'margin-left:3%;' do %>
+  <% content_tag :label do %>
+
+
+    <%= text_field_tag :query, params[:query] %>
+
+    <%= submit_tag "Search" %>
+    <br/>
+  <% end %>
+  <br />
+<% end %>
+
+<br />
+<table cellspacing="5">
+    <tbody>
+      <% @books.each do |book| %>
+        <% if @search_result %>
+        <tr>
+          <td><%= book.highlight(params[:query], :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
+          <td><%= book.author_names %></td>
+          <td><%= book.highlight(params[:query], :field => :publisher_name, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
+        </tr>
+        <% else %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author_names %></td>
+            <td><%= book.publisher_name %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+</table>
+<div align="center">
+  <%= will_paginate @books %>
+</div>
