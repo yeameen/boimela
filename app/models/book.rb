@@ -54,8 +54,9 @@ class Book < ActiveRecord::Base
 
     # insert author
     author_names = row_array[ATTRIBUTE_VALUE_MAPPINGS["author"]]
-    author_names.split(" ")
-    new_record.authors << Author.find_or_create_by_name({:name => author_names})
+    author_names.split(" ও ").each do |author_name|
+      new_record.authors << Author.find_or_create_by_name({:name => author_name})
+    end
 
     # insert type
     type_name = row_array[ATTRIBUTE_VALUE_MAPPINGS["type"]]
