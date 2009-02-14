@@ -8,8 +8,13 @@ class Book < ActiveRecord::Base
   acts_as_ferret :fields => {
     :title => {:boost => 5, :store => :yes},
     :author_names => {:boost => 10, :store => :yes},
-    :publisher_name => {:boost => 0, :store => :yes}
+    :type_name => {:boost => 0, :store => :yes},
+    :publisher_name => {:boost => 0, :store => :yes},
+    :day_of_month => {:store => :yes}
   }
+
+  cattr_accessor :ferret_server
+  self.ferret_server = self 
 
   ATTRIBUTE_VALUE_MAPPINGS = {
     "published_date"    => 0,
@@ -32,6 +37,14 @@ class Book < ActiveRecord::Base
 
   def publisher_name
     self.publisher.name
+  end
+
+  def type_name
+    self.type.name
+  end
+
+  def day_of_month
+    published_date.strftime("%d").to_i
   end
 
   def self.add_row(row_array)
