@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   require 'csv'
+  layout 'listing'
 
   def index
     unless params[:query].nil?
@@ -21,6 +22,28 @@ class BooksController < ApplicationController
         :conditions => conditions
       )
     end
+  end
+
+  def advanced
+    query = ""
+
+    unless params[:title].nil? || params[:title].empty?
+      query << "title: #{params[:title]} "
+    end
+
+    unless params[:author].nil? || params[:author].empty?
+      query << "author_names: #{params[:author]} "
+    end
+
+    unless params[:topic].nil? || params[:topic].empty?
+      query << "type_name: #{params[:topic]} "
+    end
+
+    unless params[:publisher].nil? || params[:publisher].empty?
+      query << "publisher_name: #{params[:publisher]} "
+    end
+
+    @books = Book.paginate_search(query, :page => params[:page], :per_page => 10, :lazy_load => [:title, :author_names, :publisher_name, :type_name])
   end
 
   def add

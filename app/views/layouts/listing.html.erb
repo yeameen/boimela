@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <style type="text/css">
+      table.listing {
+        border: 1px solid black;
+        width: 100%;
+      }
+
+      td.heading {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <%= link_to "home", root_url %>
+    <%= link_to "উপন্যাস", advanced_url(:topic => "উপন্যাস") %>
+    <%= link_to "কবিতা", advanced_url(:topic => "কবিতা") %>
+    <%= link_to "প্রবন্ধ", advanced_url(:topic => "প্রবন্ধ") %>
+    <%= link_to "নাটক", advanced_url(:topic => "নাটক") %>
+
+    <%= yield %>
+  </body>
+</html>

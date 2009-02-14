@@ -1,0 +1,55 @@
+<table cellspacing="5">
+  <tr>
+    <td>
+      <% form_tag "", :method => 'get', :style => 'margin-left:3%;' do %>
+        <table>
+          <tr>
+            <td>বইয়ের নাম</td>
+            <td>: <%= text_field_tag :title, params[:title] %></td>
+          </tr>
+          <tr>
+            <td>বিষয়</td>
+            <td>: <%= text_field_tag :topic, params[:topic] %></td>
+          </tr>
+          <tr>
+            <td>লেখক</td>
+            <td>: <%= text_field_tag :author, params[:author] %></td>
+          </tr>
+
+          <tr>
+            <td>প্রকাশক</td>
+            <td>: <%= text_field_tag :publisher, params[:publisher] %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= submit_tag "Search" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </td>
+    <td>
+      <%# render :partial => "calender" %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ফলাফল: <%= @books.total_entries %> টি
+    </td>
+    <td align="right">
+      <%= link_to("remove title", params.except(:title)) unless params[:title].nil? || params[:title].empty? %>
+      <%= link_to("remove author", params.except(:author)) unless params[:author].nil? || params[:author].empty? %>
+      <%= link_to("remove topic", params.except(:topic)) unless params[:topic].nil? || params[:topic].empty? %>
+      <%= link_to("remove publisher", params.except(:publisher)) unless params[:publisher].nil? || params[:publisher].empty? %>
+    </td>
+  </tr>
+  <% @books.each do |book| %>
+    <tr>
+      <td colspan="2">
+          <%= render :partial => "result_listing", :locals => {:book => book} %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div align="center">
+  <%= will_paginate @books %>
+</div>

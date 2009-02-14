@@ -306,6 +306,11 @@ EOS
 #      assigns[:productions].length.should == total_row_count
 #    end
 
+    it "should list the books under some topic in advanced search" do
+      get :advanced, {:topic => "প্রবন্ধ"}
+      assigns[:books].should_not be_nil
+      puts assigns[:books].total_entries
+    end
   end
 
 end

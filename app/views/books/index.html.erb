@@ -1,15 +1,3 @@
-<style type="text/css">
-  table.listing {
-    border: 1px solid black;
-    width: 100%;
-  }
-
-  td.heading {
-    width: 200px;
-  }
-</style>
-<%= link_to "home", root_url %>
-<br />
 <table cellspacing="5">
     <tbody>
       <tr>
@@ -23,50 +11,28 @@
               <%= submit_tag "Search" %>
             <% end %>
           <% end %>
+          <br />
+          <center>
+            <%= link_to "উন্নত অনুসন্ধান", advanced_url %>
+          </center>
         </td>
         <td>
           <%= render :partial => "calender" %>
         </td>
       </tr>
       <tr>
-          <td colspan="2">
-            ফলাফল: <%= @books.total_entries %> টি
-            <%= link_to("remove date", params.except(:date)) unless params[:date].nil? %>
-            <%= link_to("remove query", params.except(:query)) unless params[:query].nil? %>
-          </td></tr>
+        <td>
+          ফলাফল: <%= @books.total_entries %> টি
+        </td>
+        <td align="right">
+          <%= link_to("remove date", params.except(:date)) unless params[:date].nil? %>
+          <%= link_to("remove query", params.except(:query)) unless params[:query].nil? %>
+        </td>
+      </tr>
       <% @books.each do |book| %>
         <% if @is_search %>
         <tr><td colspan="2">
-          <table class="listing">
-            <tr>
-              <td class="heading">বইয়ের নাম</td>
-              <td>: <%= book.highlight(params[:query], :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
-            </tr>
-            <tr>
-              <td class="heading">লেখক/অনুবাদক/সম্পাদক</td>
-              <td>: <%= book.highlight(params[:query], :field => :author_names, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
-            </tr>
-            <tr>
-              <td class="heading">বইয়ের ধরণ/বিষয়</td>
-              <td>: <%= book.highlight(params[:query], :field => :type_name, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
-            </tr>
-            <tr>
-              <td class="heading">প্রকাশনা প্রতিষ্ঠান/প্রকাশক</td>
-              <td>: <%= book.highlight(params[:query], :field => :publisher_name, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
-            </tr>
-            <tr>
-              <td class="heading">প্রথম প্রকাশ</td>
-              <td>: <%= book.prokashkal %></td>
-            </tr>
-            <tr>
-              <td class="heading">বইমেলায় এসেছে</td>
-              <td>: <%= book.published_date.strftime("%d").to_i %> ফেব্রুয়ারী</td>
-            </tr>
-            <tr>
-              <td>মূল্য</td>
-              <td>: <%= book.price %></td>
-            </tr>
-          </table>
+          <%= render :partial => "result_listing", :locals => {:book => book} %>
         </td></tr>
         <% else %>
           <tr><td colspan="2">

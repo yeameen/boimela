@@ -33,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
   map.root :controller => 'books'
+  map.advanced '/advanced', :controller => 'books', :action => 'advanced'
 #  map.books_by_date '/day/:date', :controller => 'books', :action => 'index', :date => /\d{1,2}/
 
   # See how all your routes lay out with "rake routes"
