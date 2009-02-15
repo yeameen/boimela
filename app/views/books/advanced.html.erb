@@ -2,23 +2,23 @@
   <tr>
     <td>
       <% form_tag "", :method => 'get', :style => 'margin-left:3%;' do %>
-        <table>
+        <table cellpadding="15">
           <tr>
             <td>বইয়ের নাম</td>
-            <td>: <%= text_field_tag :title, params[:title] %></td>
+            <td>: <%= text_field_tag :title, params[:title], :lang => "bangla" %></td>
           </tr>
           <tr>
             <td>বিষয়</td>
-            <td>: <%= text_field_tag :topic, params[:topic] %></td>
+            <td>: <%= text_field_tag :topic, params[:topic], :lang => "bangla" %></td>
           </tr>
           <tr>
             <td>লেখক</td>
-            <td>: <%= text_field_tag :author, params[:author] %></td>
+            <td>: <%= text_field_tag :author, params[:author], :lang => "bangla"  %></td>
           </tr>
 
           <tr>
             <td>প্রকাশক</td>
-            <td>: <%= text_field_tag :publisher, params[:publisher] %></td>
+            <td>: <%= text_field_tag :publisher, params[:publisher], :lang => "bangla" %></td>
           </tr>
           <tr>
             <td></td>

@@ -1,0 +1,112 @@
+
+.keyboard-options {
+  position: absolute;
+  display: block;
+  background: #f0f0f0;
+  border-right: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  padding: 2px;
+  font-size: 16px;
+}
+.keyboard-options ul {
+  padding: 0px;
+  margin: 0px;
+}
+.keyboard-options ul li {
+  display: inline;
+  padding-right: 5px;
+}
+.keyboard-options ul li.last {
+  border-right: 0px!important;
+}
+.keyboard-options ul li .keyboard_option_link {
+  margin-left: 5px;
+}
+.keyboard-options ul li .keyboard_option_button {
+  position: relative;
+  top: 2px;
+}
+.write-panel {
+  background: lightyellow;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  padding: 10px;
+}
+.write-panel h1 {
+  font-size: 20px;
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-bottom: 2px solid #ccc;
+}
+/*** old ***/
+
+/** new
+
+.keyboard-options {
+	position: absolute;
+	height: 37px;
+	width: 300px;
+	font-family: Candara, Verdana, Arial, AdorshoLipi;
+	color: #CCCCCC;
+}
+.keyboard-options .icon {
+	background: url(images/kbsel-icon.gif) no-repeat;
+	float: left;
+	height: 37px;
+	width: 38px;
+}
+.keyboard-options .bar {
+	background: url(images/kbsel-bg.gif) repeat-x;
+	float: left;
+	height: 23px;
+	width: auto;
+	padding: 7px 3px;
+}
+.keyboard-options .move {
+	background: url(images/kbsel-move.gif) no-repeat;
+	float: left;
+	height: 37px;
+	width: 32px;
+	cursor: move;
+}
+.keyboard-options .bar a {
+	height: 23px;
+	width: 44px;
+	display: block;
+	float: left;
+	background-position: top left;
+	background-repeat: no-repeat;
+	text-decoration: none;
+}
+.keyboard-options .bar .eng {
+	background-image: url(images/kbsel-eng.gif);
+}
+.keyboard-options .bar .pho {
+	background-image: url(images/kbsel-pho.gif);
+}
+.keyboard-options .bar .uni {
+	background-image: url(images/kbsel-uni.gif);
+}
+.keyboard-options .bar .bij {
+	background-image: url(images/kbsel-bij.gif);
+}
+.keyboard-options .bar a.active,
+.keyboard-options .bar a:hover, .keyboard-options .bar .selected {
+	background-position: bottom left;
+}
+.keyboard-options .bar a.help {
+	color: #99CC33;
+	text-decoration: none;
+	display: inline;
+	float: none;
+	font-weight: bold;
+}
+.keyboard-options .bar a.help:hover {
+	color: #000000;
+	text-decoration: none;
+}
+
+*/

@@ -11,6 +11,15 @@
         width: 200px;
       }
     </style>
+    <%= stylesheet_link_tag "layout.css" %>
+    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "keyboard/bangla.js", "keyboard/bijoyunicode.js", "keyboard/jquery.domec.js", "keyboard/main.js", "keyboard/main_prototyped.js", "keyboard/phoneticunicode.js" %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        KeyboardOptions.debug = function() {}
+        KeyboardOptions.startBanglaSupport();
+      });
+    </script>
   </head>
   <body>
     <%= link_to "home", root_url %>

@@ -5,7 +5,7 @@
           <% form_tag "", :method => 'get', :style => 'margin-left:3%;' do %>
             <% content_tag :label do %>
 
-              <%= text_field_tag :query, params[:query] %>
+              <%= text_field_tag :query, params[:query], :lang => "bangla" %>
               <%= hidden_field_tag(:date, params[:date]) unless params[:date].nil? %>
 
               <%= submit_tag "Search" %>
