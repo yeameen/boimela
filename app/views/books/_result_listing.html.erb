@@ -7,17 +7,17 @@
   <tr>
     <td class="heading">লেখক/অনুবাদক/সম্পাদক</td>
     <% author = (params[:author])? params[:author] : (params[:query]) ? params[:query] : "" %>
-    <td>: <%= book.highlight(author, :field => :author_names, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
+    <td>: <%= link_to(book.highlight(author, :field => :author_names, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), advanced_url(:author => book.author_names)) %></td>
   </tr>
   <tr>
     <td class="heading">বইয়ের ধরণ/বিষয়</td>
     <% topic = (params[:topic])? params[:topic] : (params[:query]) ? params[:query] : "" %>
-    <td>: <%= book.highlight(topic, :field => :type_name, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
+    <td>: <%= link_to(book.highlight(topic, :field => :type_name, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), advanced_url(:topic => book.type_name)) %></td>
   </tr>
   <tr>
     <td class="heading">প্রকাশনা প্রতিষ্ঠান/প্রকাশক</td>
     <% publisher = (params[:publisher])? params[:publisher] : (params[:query]) ? params[:query] : "" %>
-    <td>: <%= book.highlight(publisher, :field => :publisher_name, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
+    <td>: <%= link_to(book.highlight(publisher, :field => :publisher_name, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>"), advanced_url(:publisher => book.publisher_name)) %></td>
   </tr>
   <tr>
     <td class="heading">প্রথম প্রকাশ</td>
@@ -25,7 +25,7 @@
   </tr>
   <tr>
     <td class="heading">বইমেলায় এসেছে</td>
-    <td>: <%= book.published_date.strftime("%d").to_i %> ফেব্রুয়ারী</td>
+    <td>: <%= link_to(book.published_date.strftime("%d").to_i.to_s + " ফেব্রুয়ারী", root_url(:date =>  book.published_date.strftime("%d").to_i)) %></td>
   </tr>
   <tr>
     <td>মূল্য</td>

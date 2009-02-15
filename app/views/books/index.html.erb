@@ -43,15 +43,15 @@
             </tr>
             <tr>
               <td class="heading">লেখক/অনুবাদক/সম্পাদক</td>
-              <td>: <%= book.author_names %></td>
+              <td>: <%= link_to(book.author_names, advanced_url(:author => book.author_names)) %></td>
             </tr>
             <tr>
               <td class="heading">বইয়ের ধরণ/বিষয়</td>
-              <td>: <%= book.type_name %></td>
+              <td>: <%= link_to(book.type_name, advanced_url(:topic => book.type_name)) %></td>
             </tr>
             <tr>
               <td class="heading">প্রকাশনা প্রতিষ্ঠান/প্রকাশক</td>
-              <td>: <%= book.publisher_name %></td>
+              <td>: <%= link_to(book.publisher_name, advanced_url(:publisher => book.publisher_name)) %></td>
             </tr>
             <tr>
               <td class="heading">প্রথম প্রকাশ</td>
@@ -59,7 +59,7 @@
             </tr>
             <tr>
               <td class="heading">বইমেলায় এসেছে</td>
-              <td>: <%= book.published_date.strftime("%d").to_i %> ফেব্রুয়ারী</td>
+              <td>: <%= link_to(book.published_date.strftime("%d").to_i.to_s + " ফেব্রুয়ারী", root_url(:date =>  book.published_date.strftime("%d").to_i)) %></td>
             </tr>
             <tr>
               <td class="heading">মূল্য</td>
