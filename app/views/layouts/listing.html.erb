@@ -8,7 +8,7 @@
       }
 
       td.heading {
-        width: 200px;
+        width: 150px;
       }
     </style>
     <%= stylesheet_link_tag "layout.css" %>
@@ -21,13 +21,16 @@
       });
     </script>
   </head>
-  <body style="font-family:SolaimanLipi; font-size: 16px;">
-    <%= link_to "home", root_url %>
+  <body style="font-family:SolaimanLipi; font-size: 16px; width:600px;">
+    <strong><%= link_to " অনুসন্ধান", root_url %></strong>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <%= link_to "উপন্যাস", advanced_url(:topic => "উপন্যাস") %>
     <%= link_to "কবিতা", advanced_url(:topic => "কবিতা") %>
     <%= link_to "প্রবন্ধ", advanced_url(:topic => "প্রবন্ধ") %>
     <%= link_to "নাটক", advanced_url(:topic => "নাটক") %>
-
+    <%= link_to "শিশু ও কিশোর", advanced_url(:topic => "কিশোর") %>
+    
     <%= yield %>
+
   </body>
 </html>

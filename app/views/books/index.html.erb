@@ -8,7 +8,7 @@
               <%= text_field_tag :query, params[:query], :lang => "bangla" %>
               <%= hidden_field_tag(:date, params[:date]) unless params[:date].nil? %>
 
-              <%= submit_tag "Search" %>
+              <%= submit_tag " অনুসন্ধান" %>
             <% end %>
           <% end %>
           <br />
@@ -63,7 +63,7 @@
             </tr>
             <tr>
               <td class="heading">মূল্য</td>
-              <td>: <%= book.price %></td>
+              <td>: ৳ <%= localize_numeric(book.price.to_i.to_s) %></td>
             </tr>
           </table>
         </td></tr>
