@@ -59,7 +59,7 @@
             </tr>
             <tr>
               <td class="heading">বইমেলায় এসেছে</td>
-              <td>: <%= link_to(book.published_date.strftime("%d").to_i.to_s + " ফেব্রুয়ারী", root_url(:date =>  book.published_date.strftime("%d").to_i)) %></td>
+              <td>: <%= link_to(localize_numeric(book.published_date.strftime("%d").to_i.to_s) + " ফেব্রুয়ারী", root_url(:date =>  book.published_date.strftime("%d").to_i)) %></td>
             </tr>
             <tr>
               <td class="heading">মূল্য</td>
@@ -72,5 +72,5 @@
     </tbody>
 </table>
 <div align="center">
-  <%= will_paginate @books %>
+  <%= localize_numeric((will_paginate @books).to_s) %>
 </div>
