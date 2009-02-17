@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   require 'csv'
   layout 'listing'
 
-  before_filter :protect_through_http_basic, :only => [:add, :create]
+  before_filter :protect_through_http_basic, :only => [:add, :create, :add_url, :create_url]
 
   PER_PAGE_LIMIT = 5
 
@@ -61,5 +61,17 @@ class BooksController < ApplicationController
     end
     redirect_to :action => "index"
   end
+  
+  def add_url
 
+  end
+
+  def create_url
+    data = params[:data]
+    document = CSV::Reader.parse(data)
+    document.each do |row|
+      Book.add_url(row)
+    end
+    redirect_to :action => 'index'
+  end
 end

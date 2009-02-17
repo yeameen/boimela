@@ -42,7 +42,7 @@
               <td>: <%= book.title %></td>
               <td style="width: 170px" rowspan="7">
                 <% if !book.image_url.nil? && !book.image_url.empty? %>
-                  <img src="http://www.boi-mela.com/_FPageB/Book10633.jpg" alt="<%= book.title %>" style="margin-left:5px;" />
+                  <img src="<%= book.image_url %>" alt="<%= book.title %>" style="margin-left:5px;" />
                 <% else %>
                   &nbsp;
                 <% end %>

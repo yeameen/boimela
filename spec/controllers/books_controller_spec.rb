@@ -294,6 +294,45 @@ EOS
       new_row_count.should == @sample_data.split(/\n/).length + old_row_count - 1 #
     end
 
+    it "should add buy_url" do
+      data = <<EOF
+10532,"কালা পানি","http://www.boi-mela.com/BookDet.asp?BookID=10532","http://www.boi-mela.com/_FPageB/np.jpg","120.00 "
+10533,"রাষ্ট্র পরিচালনায় অর্থনীতির গুরুত্ব","http://www.boi-mela.com/BookDet.asp?BookID=10533","http://www.boi-mela.com/_FPageB/np.jpg","120.00 "
+EOF
+      # at first, add some data
+      post :create, {:data => @sample_data}
+      puts "Count #{Book.count}"
+
+      # now update with the url
+      post :create_url, {:data => data}
+
+      book = Book.find_by_title("রাষ্ট্র পরিচালনায় অর্থনীতির গুরুত্ব")
+      puts book.inspect
+      book.should_not be_nil
+      book.buy_url.should_not be_nil
+      book.buy_url.should == "http://www.boi-mela.com/BookDet.asp?BookID=10533"
+      book.image_url.should be_nil
+    end
+
+    it "should add image url if valid image availbe" do
+      data = <<EOF
+10532,"কালা পানি","http://www.boi-mela.com/BookDet.asp?BookID=10532","http://www.boi-mela.com/_FPageB/np.jpg","120.00 "
+10533,"রাষ্ট্র পরিচালনায় অর্থনীতির গুরুত্ব","http://www.boi-mela.com/BookDet.asp?BookID=10533","http://www.boi-mela.com/_FPageB/10533.jpg","120.00 "
+EOF
+      # at first, add some data
+      post :create, {:data => @sample_data}
+      puts "Count #{Book.count}"
+
+      # now update with the url
+      post :create_url, {:data => data}
+
+      book = Book.find_by_title("রাষ্ট্র পরিচালনায় অর্থনীতির গুরুত্ব")
+      book.should_not be_nil
+
+      book.image_url.should_not be_nil
+      book.image_url.should == "http://www.boi-mela.com/_FPageB/10533.jpg"
+    end
+
 #    it "should list all the data on index page" do
 #      # add new data
 #      post :create, {:data => @sample_data}
@@ -312,5 +351,4 @@ EOS
       puts assigns[:books].total_entries
     end
   end
-
 end

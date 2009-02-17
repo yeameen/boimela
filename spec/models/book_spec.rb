@@ -52,4 +52,47 @@ describe Book do
     puts "Publisher count: #{Publisher.count}"
     puts "Type count: #{Type.count}"
   end
+
+  describe "Adding image and buy this url" do
+    before(:each) do
+
+    end
+
+    it "should add buy this url" do
+      sample_row = [10474,"প্রেম হলেও হতে পারত","http://www.boi-mela.com/BookDet.asp?BookID=10474","http://www.boi-mela.com/_FPageB/np.jpg","100.00"]
+
+      return_value = Book.add_row(@sample_csv_row['simple'])
+      return_value.should_not be_nil
+      
+      book = Book.add_url(sample_row)
+
+      book.should_not be_nil
+      book.buy_url.should == "http://www.boi-mela.com/BookDet.asp?BookID=10474"
+    end
+
+    it "should image url if any image available" do
+      sample_row = [10474,"প্রেম হলেও হতে পারত","http://www.boi-mela.com/BookDet.asp?BookID=10474","http://www.boi-mela.com/_FPageB/421123.jpg","100.00"]
+
+      return_value = Book.add_row(@sample_csv_row['simple'])
+      return_value.should_not be_nil
+
+      book = Book.add_url(sample_row)
+
+      book.should_not be_nil
+      book.image_url.should_not be_nil
+      book.image_url.should == "http://www.boi-mela.com/_FPageB/421123.jpg"
+    end
+
+    it "should not add image url if no image available" do
+      sample_row = [10474,"প্রেম হলেও হতে পারত","http://www.boi-mela.com/BookDet.asp?BookID=10474","http://www.boi-mela.com/_FPageB/np.jpg","100.00"]
+
+      return_value = Book.add_row(@sample_csv_row['simple'])
+      return_value.should_not be_nil
+
+      book = Book.add_url(sample_row)
+
+      book.should_not be_nil
+      book.image_url.should be_nil
+    end
+  end
 end

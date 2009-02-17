@@ -82,4 +82,21 @@ class Book < ActiveRecord::Base
     return nil unless new_record.save
     new_record
   end
+
+  def self.add_url(row_array)
+    raise "Row doesn't have 5 columns, has #{row_array.length} columns" unless row_array.length == 5
+
+    book_name = row_array[1]
+    book = find_by_title(book_name)
+    unless book.nil?
+      book.buy_url = row_array[2]
+      book_image_url = row_array[3]
+      unless book_image_url == "http://www.boi-mela.com/_FPageB/np.jpg"
+        book.image_url = book_image_url
+      end
+      book.save
+      return book
+    end
+    return nil
+  end
 end
