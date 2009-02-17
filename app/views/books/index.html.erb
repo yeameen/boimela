@@ -6,7 +6,7 @@
             <% content_tag :label do %>
 
               <%= text_field_tag :query, params[:query], :lang => "bangla" %>
-              <%= hidden_field_tag(:date, params[:date]) unless params[:date].nil? %>
+              <%# hidden_field_tag(:date, params[:date]) unless params[:date].nil? %>
 
               <%= submit_tag " অনুসন্ধান" %>
             <% end %>
