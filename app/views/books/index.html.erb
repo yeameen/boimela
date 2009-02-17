@@ -1,4 +1,4 @@
-<table cellspacing="5">
+<table cellspacing="5" style="width: 550px;">
     <tbody>
       <tr>
         <td>
@@ -36,10 +36,17 @@
         </td></tr>
         <% else %>
           <tr><td colspan="2">
-          <table class="listing">
+          <table class="listing" id="<%= "book_#{book.id}" %>">
             <tr>
               <td class="heading">বইয়ের নাম</td>
               <td>: <%= book.title %></td>
+              <td style="width: 170px" rowspan="7">
+                <% if !book.image_url.nil? && !book.image_url.empty? %>
+                  <img src="http://www.boi-mela.com/_FPageB/Book10633.jpg" alt="<%= book.title %>" style="margin-left:5px;" />
+                <% else %>
+                  &nbsp;
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td class="heading">লেখক/অনুবাদক/সম্পাদক</td>
@@ -63,7 +70,11 @@
             </tr>
             <tr>
               <td class="heading">মূল্য</td>
-              <td>: ৳ <%= localize_numeric(book.price.to_i.to_s) %></td>
+              <td>: ৳ <%= localize_numeric(book.price.to_i.to_s) %>
+                <% if !book.buy_url.nil? && !book.buy_url.empty? %>
+                  <%= link_to "(অনলাইনে কিনুন)", book.buy_url, :target => "_blank" %>
+                <% end %>
+              </td>
             </tr>
           </table>
         </td></tr>

@@ -1,8 +1,15 @@
-<table class="listing">
+<table class="listing" id="<%= "book_#{book.id}" %>">
   <tr>
     <td class="heading">বইয়ের নাম</td>
     <% title = (params[:title])? params[:title] : (params[:query]) ? params[:query] : "" %>
     <td>: <%= book.highlight(title, :field => :title, :num_excerpts => 1, :pre_tag => "<strong>", :post_tag => "</strong>") %></td>
+    <td style="width: 170px" rowspan="7">
+      <% if !book.image_url.nil? && !book.image_url.empty? %>
+        <img src="http://www.boi-mela.com/_FPageB/Book10633.jpg" alt="<%= book.title %>" style="margin-left:5px;" />
+      <% else %>
+        &nbsp;
+      <% end %>
+    </td>
   </tr>
   <tr>
     <td class="heading">লেখক/অনুবাদক/সম্পাদক</td>
@@ -29,6 +36,10 @@
   </tr>
   <tr>
     <td>মূল্য</td>
-    <td>: ৳ <%= localize_numeric(book.price.to_i.to_s) %></td>
+    <td>: ৳ <%= localize_numeric(book.price.to_i.to_s) %>
+      <% if !book.buy_url.nil? && !book.buy_url.empty? %>
+        <%= link_to "(অনলাইনে কিনুন)", book.buy_url, :target => "_blank" %>
+      <% end %>
+    </td>
   </tr>
 </table>
