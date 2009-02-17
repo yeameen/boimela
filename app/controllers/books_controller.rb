@@ -2,8 +2,12 @@ class BooksController < ApplicationController
   require 'csv'
   layout 'listing'
 
+  before_filter :protect_through_http_basic, :only => [:add, :create]
+
+  PER_PAGE_LIMIT = 5
+
   def index
-    unless params[:query].nil?
+    unless params[:query].nil? || params[:query].empty?
       @is_search = true
       query = params[:query]
 
@@ -13,11 +17,11 @@ class BooksController < ApplicationController
 
       puts "Query: #{query}\n\n"
 
-      @books = Book.paginate_search(query, :page => params[:page], :per_page => 10) #, :lazy_load => [:title, :author_names, :publisher_name])
+      @books = Book.paginate_search(query, :page => params[:page], :per_page => PER_PAGE_LIMIT, :lazy_load => [:title, :author_names, :publisher_name, :type_name])
     else
       @is_search = false
       conditions = !(params[:date].nil?) ? "DAY(published_date) = '#{params[:date].to_i}'" : ""
-      @books = Book.paginate(:page => params[:page],  :per_page => 10,
+      @books = Book.paginate(:page => params[:page],  :per_page => PER_PAGE_LIMIT,
         :order => "published_date DESC",
         :conditions => conditions
       )
@@ -43,7 +47,7 @@ class BooksController < ApplicationController
       query << "publisher_name: #{params[:publisher]} "
     end
 
-    @books = Book.paginate_search(query, :page => params[:page], :per_page => 10, :lazy_load => [:title, :author_names, :publisher_name, :type_name])
+    @books = Book.paginate_search(query, :page => params[:page], :per_page => PER_PAGE_LIMIT, :lazy_load => [:title, :author_names, :publisher_name, :type_name])
   end
 
   def add

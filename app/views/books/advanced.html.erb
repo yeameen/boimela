@@ -33,7 +33,7 @@
   </tr>
   <tr>
     <td>
-      ফলাফল: <%= @books.total_entries %> টি
+      ফলাফল: <%= localize_numeric(@books.total_entries.to_s) %> টি
     </td>
     <td align="right">
       <%= link_to("remove title", params.except(:title)) unless params[:title].nil? || params[:title].empty? %>
@@ -51,5 +51,5 @@
   <% end %>
 </table>
 <div align="center">
-  <%= localize_numeric(will_paginate(@books).to_s) %>
+  <%= will_paginate(@books) %>
 </div>

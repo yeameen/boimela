@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
   ActiveScaffold.set_defaults do |config|
     config.ignore_columns.add [:created_at, :updated_at]
   end
+
+  def protect_through_http_basic
+    authenticate_or_request_with_http_basic do |e_user_name, e_password|
+      return e_user_name == "admin" && e_password == "boi21st" 
+    end
+  end
+
 end

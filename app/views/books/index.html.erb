@@ -22,7 +22,7 @@
       </tr>
       <tr>
         <td>
-          ফলাফল: <%= @books.total_entries %> টি
+          ফলাফল: <%= localize_numeric(@books.total_entries.to_s) %> টি
         </td>
         <td align="right">
           <%= link_to("remove date", params.except(:date)) unless params[:date].nil? %>
@@ -71,6 +71,6 @@
       <% end %>
     </tbody>
 </table>
-<div align="center">
-  <%= localize_numeric((will_paginate @books).to_s) %>
+<div style="text-align: center;">
+  <%= will_paginate @books %>
 </div>
